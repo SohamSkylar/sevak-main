@@ -1,0 +1,52 @@
+@media (max-width: 1025px) {
+    .userDetailName {
+      display: none;
+    }
+    .loginButton {
+      margin-right: 2rem;
+    }
+    .userDetailPic {
+      margin-right: 2rem;
+    }
+  }
+  
+  @media (max-width: 770px) {
+    .middleNav,
+    .loginButton,
+    .userDetailName {
+      display: none;
+    }
+    .hamburger-menu{
+      display: block;
+    }
+  
+    .mobileNavDiv{
+      max-width: 580px;
+    }
+  
+    .mobileNavDiv {
+      display: grid;
+      margin-top: 3.5rem;
+      position: absolute;
+      color: aliceblue;
+      width: 90%;
+      margin-left: 2rem;
+      grid-column: 2/5;
+      z-index: 99;
+      background-color: rgb(155, 76, 11);
+      height: 15rem;
+      align-items: center;
+      padding-left: 3rem;
+      transition: all 1s linear;
+      transform-origin: top;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    }
+  
+    .mobileNavDiv ul {
+      height: 15rem;
+      display: flex;
+      justify-content: space-around;
+      flex-direction: column;
+      align-items: start;
+    }
+  }
