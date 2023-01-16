@@ -2,18 +2,18 @@ import React, { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { FaUserCircle } from "react-icons/fa";
 import './navbar.css';
+import SearchBar from "./SearchBar";
 
-const NavBar = () => {
+const NavBar = ({searchBarQuery}) => {
   const [showMediaIcons, setShowMediaIcons] = useState(false);
 
   return (
     <div>
-      <nav className="container m-auto mt-4 flex h-12 rounded-full bg-red-100">
-        <div className="container my-auto flex">
-          <img alt="Logo" className="ml-8" />
-          <p className="ml-2 font-bold">Company Name</p>
+      <nav className="container m-auto mt-4 flex h-20 rounded bg-neutral-200">
+        <div className="firstNav container my-auto flex justify-start">
+          <img src="./images/sevak-high-resolution-logo-color-on-transparent-background.png" alt="Logo" className="ml-8 h-auto w-32 logoPic" />
+          <SearchBar propQuery = {searchBarQuery}/>
         </div>
-
         <div
           className={
             showMediaIcons

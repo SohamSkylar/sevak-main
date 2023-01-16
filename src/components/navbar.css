@@ -1,4 +1,4 @@
-@media (max-width: 1025px) {
+/* @media (max-width: 1025px) {
     .userDetailName {
       display: none;
     }
@@ -8,20 +8,39 @@
     .userDetailPic {
       margin-right: 2rem;
     }
+  } */
+
+  @media (max-width: 1535px) {
+    .searchBar{
+      width: 15rem;
+    }
   }
-  
-  @media (max-width: 770px) {
+
+  @media (max-width: 1278px) {
+    .searchBar{
+      width: 11rem;
+    }
+  }
+
+  @media (max-width: 1025px) {
     .middleNav,
     .loginButton,
     .userDetailName {
       display: none;
     }
+    .firstNav{
+      justify-content: flex-start;
+    }
     .hamburger-menu{
       display: block;
     }
+    .searchBar{
+      height: 2rem;
+      width: 28rem;
+    }
   
     .mobileNavDiv{
-      max-width: 580px;
+      max-width: 700px;
     }
   
     .mobileNavDiv {
@@ -50,3 +69,32 @@
       align-items: start;
     }
   }
+
+  @media (max-width: 767px) {
+    .mobileNavDiv{
+      max-width: 580px;
+    }
+
+    .searchBar{
+      width: 20rem;
+    }
+  }
+
+  @media (max-width: 578px) {
+    .searchBar{
+      width: 15rem;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .searchBar{
+      width: 10rem;
+    }
+  }
+
+  @media (max-width: 430px) {
+    .logoPic{
+      width: 5rem;
+    }
+  }
+  
