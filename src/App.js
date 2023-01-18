@@ -16,17 +16,19 @@ function App() {
 
   const LoadProfileData = Users.filter((user) => {
     let userTypeValue = () => {
-      if (user.type.filter((e) => e.includes(query)).length === 0) {
+      if (
+        user.type.filter((e) => e.toLowerCase().includes(query.toLowerCase()))
+          .length === 0
+      ) {
         // if (user.type.filter((e) => queryHandle.forEach(x => e.includes(x))).length === 0) {
         return false;
       } else {
         return true;
       }
     };
-
     return (
-      user.name.toLowerCase().includes(query) ||
-      user.location.toLowerCase().includes(query) ||
+      user.name.toLowerCase().includes(query.toLowerCase()) ||
+      user.location.toLowerCase().includes(query.toLowerCase()) ||
       userTypeValue()
     );
   }).map((user) => (
@@ -45,7 +47,7 @@ function App() {
   return (
     <div className="container m-auto">
       <NavBar searchBarQuery={setQuery} />
-      <div className="container flex-wrap flex mt-4 justify-evenly m-auto">
+      <div className="container flex-wrap flex mt-4 justify-evenly m-auto overflow-hidden">
         {LoadProfileData}
       </div>
     </div>

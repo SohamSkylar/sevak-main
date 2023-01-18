@@ -1,10 +1,39 @@
 import { hasFormSubmit } from "@testing-library/user-event/dist/utils";
-import React from "react";
+import React, { useState } from "react";
+import QuickView from "../Profile/Profile.jsx";
 
 const ProfileCard = (data) => {
+  const [showProfileModal, setShowProfileModal] = useState(false);
+
+  const displayProfileModal = () => {
+    setShowProfileModal(!showProfileModal);
+    if(!showProfileModal) document.body.style.overflow = 'hidden'
+    else document.body.style.overflow = 'unset'
+  };
+
+  const createDivProfile = () => {
+    return (
+      <div className="absolute modalCard">
+        <QuickView
+          className="w-2/4"
+          name={data.name}
+          rating={data.rating}
+          location={data.location}
+          type={data.type}
+          displayProfileModal = {displayProfileModal}
+        />
+      </div>
+    );
+  };
 
   function populateImage() {
-    return <img className="p-8 max-h-80 max-w-80 min-h-80 min-w-80" src={data.image} alt="product image" />;
+    return (
+      <img
+        className="p-8 max-h-80 max-w-80 min-h-80 min-w-80"
+        src={data.image}
+        alt="product image"
+      />
+    );
   }
   function populateName() {
     return data.name.charAt(0).toUpperCase() + data.name.slice(1);
@@ -84,64 +113,70 @@ const ProfileCard = (data) => {
   }
 
   return (
-    <li>
-      <div className="container m-auto justify-center">
-        <div className="bg-white shadow-md rounded-lg max-w-sm dark:bg-neutral-200 dark:border-gray-700">
-        <a href="#">{populateImage()}</a>
-          <div className="px-5 pb-5">
-            <a href="#">
-              <h3
-                name="name"
-                className="text-gray-900 font-bold text-xl tracking-tight  dark:text-black py-3"
-              >
-                {populateName()}
-              </h3>
-              <h5
-                name="type"
-                className="text-gray-900  text-s tracking-tight dark:text-white"
-              >
-                <div className="flex flex-row space-x-3">{populateType()}</div>
-              </h5>
-            </a>
-            <div className="flex items-center mt-2.5 mb-5">
-              {populateStars()}
-              <span
-                name="rating"
-                className="bg-blue-100 text-amber-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-amber-800 ml-3"
-              >
-                {populateRating()}
-              </span>
-            </div>
-            <div className="flex items-center justify-between">
-              <a
-                href="#"
-                className="text-white bg-amber-900 hover:bg-amber-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-amber-900 dark:hover:bg-amber-800 dark:focus:ring-amber-800"
-              >
-                View Profile
+    <div>
+      {showProfileModal ? createDivProfile() : null}
+      <li>
+        <div className="container m-auto justify-center">
+          <div className="bg-white shadow-md rounded-lg max-w-sm dark:bg-neutral-200 dark:border-gray-700">
+            <a href="#">{populateImage()}</a>
+            <div className="px-5 pb-5">
+              <a href="#">
+                <h3
+                  name="name"
+                  className="text-gray-900 font-bold text-xl tracking-tight  dark:text-black py-3"
+                >
+                  {populateName()}
+                </h3>
+                <h5
+                  name="type"
+                  className="text-gray-900  text-s tracking-tight dark:text-white"
+                >
+                  <div className="flex flex-row space-x-3">
+                    {populateType()}
+                  </div>
+                </h5>
               </a>
-              <div>
-                <a href="#">
-                  <span className="flex text-xl font-bold text-gray-900 dark:text-black">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="20"
-                      height="28"
-                      fill="currentColor"
-                      className="bi bi-geo-alt"
-                      viewBox="2 0 16 16"
-                    >
-                      <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z" />
-                      <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                    </svg>
-                    <div name="location">{populateLocation()}</div>
-                  </span>
+              <div className="flex items-center mt-2.5 mb-5">
+                {populateStars()}
+                <span
+                  name="rating"
+                  className="bg-blue-100 text-amber-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-amber-800 ml-3"
+                >
+                  {populateRating()}
+                </span>
+              </div>
+              <div className="flex items-center justify-between">
+                <a
+                  href="#"
+                  className="text-white bg-amber-900 hover:bg-amber-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-amber-900 dark:hover:bg-amber-800 dark:focus:ring-amber-800"
+                  onClick={(e) => displayProfileModal(e)}
+                >
+                  View Profile
                 </a>
+                <div>
+                  <a href="#">
+                    <span className="flex text-xl font-bold text-gray-900 dark:text-black">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="28"
+                        fill="currentColor"
+                        className="bi bi-geo-alt"
+                        viewBox="2 0 16 16"
+                      >
+                        <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z" />
+                        <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                      </svg>
+                      <div name="location">{populateLocation()}</div>
+                    </span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </li>
+      </li>
+    </div>
   );
 };
 
